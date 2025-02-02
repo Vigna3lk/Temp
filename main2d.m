@@ -16,8 +16,8 @@ Radar_params = struct(...
 
 Src_params = struct(...
     'SrcAmount', 2, ...  % 信源数量
-    'f_start', [1e4, 1e4], ...  % 信号的起始频率
-    'f_end', [1e4, 1e4], ...    % 信号的终止频率
+    'f_start', [1e3, 1e4], ...  % 信号的起始频率
+    'f_end', [1e3, 1e4], ...    % 信号的终止频率
     'phi', [10, 50], ...    % 信源的方向角(在二维平面内)
     'phase', [0, 0], ...     % 信源的初相位
     'SNR', 30, ...           % 信噪比
@@ -138,7 +138,7 @@ for i = 1:length(single_source_regions)
         if V_idx == 0
             V_idx = find(int16(diff(diag(Lambda))) == 1);
         end
-        V = Q(:, 3:end);
+        V = Q(:, 1:V_idx);
         xi(ph - phi_st + 1) = xi(ph - phi_st + 1) + 1 / norm(V' * hat_X);
     end
     
